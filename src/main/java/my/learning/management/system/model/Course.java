@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "course")
-public class Сourse {
+public class Course {
 
     @Column(name = "name")
     private String name;
