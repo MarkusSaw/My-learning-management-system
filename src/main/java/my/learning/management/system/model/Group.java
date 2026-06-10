@@ -5,17 +5,15 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "course")
-public class Course {
+@Table(name = "groupname")
+public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "coursedescription")
-    private String coursedescription ;
 
 }

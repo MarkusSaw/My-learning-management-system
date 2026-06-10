@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "course")
-public class Course {
+@Table(name = "teacher")
+public class Teacher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +15,6 @@ public class Course {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "coursedescription")
-    private String coursedescription ;
-
+    @Column(name = "lastname")
+    private String lastname;
 }
