@@ -2,13 +2,20 @@ package my.learning.management.system.model;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 
 @Entity
-
-@Table(name = "groupname")
+@Table(name = "group_name")
 public class Group {
 
     @Id
@@ -19,37 +26,7 @@ public class Group {
     private String title;
 
     @OneToMany(mappedBy = "group")
-     private List<Student> students;
+    private List<Student> students;
 
 
-    public Group(String title) {
-        this.title = title;
-    }
-
-    public Group() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
 }
