@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset author:create-students-table
+--changeset MarkusSaw:create-students-table
 
 SET search_path TO managemt_system;
 
