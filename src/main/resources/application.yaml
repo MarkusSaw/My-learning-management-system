@@ -12,10 +12,11 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: public
 
   liquibase:
     enabled: true
-    change-log: liquibase/db.changelog.yaml
+    change-log: liquibase/db.changelog-master.yaml
 
 
 

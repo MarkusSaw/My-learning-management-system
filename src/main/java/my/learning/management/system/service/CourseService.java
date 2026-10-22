@@ -2,13 +2,15 @@ package my.learning.management.system.service;
 
 
 import my.learning.management.system.dto.CourseResponse;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 
 public interface CourseService {
-    List<CourseResponse> findAllCourses();
+    Page<CourseResponse> findAllCourses(Pageable pageable);
     CourseResponse findCourseById(Long id);
-    CourseResponse createCourse(CourseResponse courseResponse);
-    CourseResponse updateCourse(Long id, CourseResponse courseResponse);
-    void deleteCourse(Long id);
+    CourseResponse create(CourseResponse courseResponse);
+    CourseResponse update(Long id, CourseResponse courseResponse);
+    void delete(Long id);
 }

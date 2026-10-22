@@ -2,11 +2,12 @@ package my.learning.management.system.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import my.learning.management.system.dto.CourseResponse;
 import my.learning.management.system.service.CourseService;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 @RestController
 @RequestMapping("/api/v1/courses")
@@ -16,8 +17,8 @@ public class CourseController {
     private final CourseService courseService;
 
     @GetMapping
-    public List<CourseResponse> getAllCourses() {
-        return courseService.findAllCourses();
+    public Page<CourseResponse> getAllCourses(Pageable pageable) {
+        return courseService.findAllCourses(pageable);
     }
 
     @GetMapping("/{id}")
@@ -27,19 +28,18 @@ public class CourseController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CourseResponse createCourse(@RequestBody CourseResponse courseResponse) {
-        return courseService.createCourse(courseResponse);
+    public CourseResponse create(@RequestBody CourseResponse courseResponse) {
+        return courseService.create(courseResponse);
     }
 
     @PutMapping("/{id}")
-    public CourseResponse updateCourse(@PathVariable Long id,
-                                       @RequestBody CourseResponse courseResponse) {
-        return courseService.updateCourse(id, courseResponse);
+    public CourseResponse update(@PathVariable Long id, @RequestBody CourseResponse courseResponse) {
+        return courseService.update(id, courseResponse);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCourse(@PathVariable Long id) {
-        courseService.deleteCourse(id);
+    public void delete(@PathVariable Long id) {
+        courseService.delete(id);
     }
 }
