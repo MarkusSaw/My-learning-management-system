@@ -1,6 +1,6 @@
 package my.learning.management.system.service.lmpl;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import my.learning.management.system.exception.BadRequestException;
 import my.learning.management.system.exception.NotFoundException;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import org.springframework.data.domain.Pageable;
 
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CourseServiceImpl implements CourseService {
     private final CourseRepository repository;
     private final CourseMapper mapper;
@@ -27,13 +27,14 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseResponse findCourseById(Long id) {
-        return repository.findById(id).map(mapper::toResponse).orElseThrow(() -> new NotFoundException("Курс с id " + id + " не найден"));
+        return repository.findById(id).map(mapper::toResponse).orElseThrow(() -> new NotFoundException(
+                String.format("Курс с id %d не найден", id)));
     }
 
     @Override
     public CourseResponse create(CourseResponse courseResponse) {
         if (repository.existsByName(courseResponse.getName())) {
-            throw new BadRequestException("Курс с названием '" + courseResponse.getName() + "' уже существует");
+            throw new BadRequestException(String.format("Курс с названием '%s' уже существует" , courseResponse.getName()));
         }
         Course course = mapper.toCourse(courseResponse);
         return mapper.toResponse(repository.save(course));
@@ -41,10 +42,10 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseResponse update(Long id, CourseResponse courseResponse) {
-        Course existingCourse = repository.findById(id).orElseThrow(() -> new NotFoundException("Курс с id " + id + " не найден"));
+        Course existingCourse = repository.findById(id).orElseThrow(() -> new NotFoundException(String.format("Курс с id %d не найден", id)));
         if (!existingCourse.getName().equals(courseResponse.getName())
                 && repository.existsByName(courseResponse.getName())) {
-            throw new BadRequestException("Курс с названием '" + courseResponse.getName() + "' уже существует");
+            throw new BadRequestException(String.format("Курс с названием '%s' уже существует", courseResponse.getName()));
         }
         Course course = mapper.toCourse(courseResponse);
         course.setId(id);
@@ -55,7 +56,7 @@ public class CourseServiceImpl implements CourseService {
     @Transactional
     public void delete(Long id) {
         if (!repository.existsById(id)) {
-            throw new NotFoundException("Курс с id " + id + " не найден");
+            throw new NotFoundException(String.format("Курс с id %d не найден", id));
         }
         repository.deleteById(id);
     }

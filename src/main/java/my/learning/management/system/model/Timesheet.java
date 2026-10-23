@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @NoArgsConstructor
@@ -32,7 +33,7 @@ public class Timesheet {
     private int course;
 
     @Column(name = "date_of_the_lesson")
-    private int dateofthelesson;
+    private LocalDate dateOfTheLesson;
 
     @OneToMany(mappedBy = "timesheet")
     private List<Student> students;
