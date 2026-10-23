@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.app.cleanup.cron",
+      "type": "java.lang.String",
+      "description": "Description for spring.app.cleanup.cron."
+  }
+] }
