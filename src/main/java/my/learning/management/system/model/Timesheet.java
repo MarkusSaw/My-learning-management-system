@@ -1,42 +1,33 @@
 package my.learning.management.system.model;
 
-
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
 import java.time.LocalDate;
-import java.util.List;
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 
 @Entity
 @Table(name = "timesheet")
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Timesheet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "group_name")
-    private String groupname;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
 
-    @Column(name = "teacher")
-    private String teacher;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id", nullable = false)
+    private Group group;
 
-    @Column(name = "course")
-    private int course;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "teacher_id", nullable = false)
+    private Teacher teacher;
 
-    @Column(name = "date_of_the_lesson")
-    private LocalDate dateOfTheLesson;
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
 
-    @OneToMany(mappedBy = "timesheet")
-    private List<Student> students;
-
-
+    @Column(name = "end_date", nullable = false)
+    private LocalDate endDate;
 }

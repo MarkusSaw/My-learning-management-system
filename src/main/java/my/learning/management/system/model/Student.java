@@ -26,9 +26,6 @@ public class Student {
     @Column(name = "lastname")
     private String lastname;
 
-    @Column(name = "group_name")
-    private String groupname;
-
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
@@ -40,10 +37,5 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
-
-    @ManyToOne
-    @JoinColumn(name = "timesheet_id")
-    private Timesheet timesheet;
-
 
 }

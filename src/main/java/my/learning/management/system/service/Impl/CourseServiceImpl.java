@@ -1,4 +1,4 @@
-package my.learning.management.system.service.lmpl;
+package my.learning.management.system.service.Impl;
 
 import lombok.RequiredArgsConstructor;
 import my.learning.management.system.exception.BadRequestException;
@@ -32,6 +32,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional
     public CourseResponse create(CourseResponse courseResponse) {
         if (repository.existsByName(courseResponse.getName())) {
             throw new BadRequestException(String.format("Курс с названием '%s' уже существует" , courseResponse.getName()));
@@ -41,6 +42,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional
     public CourseResponse update(Long id, CourseResponse courseResponse) {
         Course existingCourse = repository.findById(id).orElseThrow(() -> new NotFoundException(String.format("Курс с id %d не найден", id)));
         if (!existingCourse.getName().equals(courseResponse.getName())

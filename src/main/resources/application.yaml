@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/my_learning_db
+    url: jdbc:postgresql://localhost:5432/my_learning_db?currentSchema=management_system
     username: my_user
     password: my_password
     driver-class-name: org.postgresql.Driver
@@ -12,13 +12,13 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        default_schema: public
+        default_schema: management_system
 
   liquibase:
     enabled: true
     change-log: liquibase/db.changelog-master.yaml
+    default-schema: management_system
 
   app:
     cleanup:
       cron: "0 0 0 1 1 ?"
-

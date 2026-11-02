@@ -42,4 +42,6 @@ public class CourseController {
     public void delete(@PathVariable Long id) {
         courseService.delete(id);
     }
+
 }
+

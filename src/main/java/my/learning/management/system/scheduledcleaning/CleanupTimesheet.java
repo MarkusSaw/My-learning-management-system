@@ -14,7 +14,7 @@ public class CleanupTimesheet {
 
     @Scheduled(cron = "${spring.app.cleanup.cron}")
     public void removeOldTimesheet(){
-        timesheetRepository.deleteByDateOfTheLessonBefore(LocalDate.now().minusYears(1));
+        timesheetRepository.deleteByEndDateBefore(LocalDate.now().minusYears(1));
         System.out.println("Старое расписание удалено");
     }
 
