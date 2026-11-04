@@ -15,6 +15,9 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @Testcontainers
 public abstract class AbstractIntegrationTest {
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     @Container
     static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16")
             .withInitScript("init-test-db.sql");
@@ -26,8 +29,6 @@ public abstract class AbstractIntegrationTest {
         registry.add("spring.datasource.password", postgres::getPassword);
     }
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
 
     @BeforeEach
     void setUp() {
