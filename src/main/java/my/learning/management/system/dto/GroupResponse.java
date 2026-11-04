@@ -1,0 +1,18 @@
+package my.learning.management.system.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+
+public class GroupResponse {
+
+    private Long id;
+    private String title;
+
+}
